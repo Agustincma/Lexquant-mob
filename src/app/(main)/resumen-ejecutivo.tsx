@@ -6,7 +6,7 @@ import { DashboardScreen } from "@/components/dashboard/dashboard-screen";
 import { IndexMeter } from "@/components/dashboard/index-meter";
 import { PageGate } from "@/components/dashboard/page-gate";
 import { Card } from "@/components/ui/card";
-import { KpiCard, KpiGrid } from "@/components/ui/kpi-card";
+import { KpiCarousel } from "@/components/ui/kpi-carousel";
 import { formatCurrency, formatNumber } from "@/dashboard/format";
 import { radius } from "@/theme/palette";
 import { useTheme } from "@/theme/theme";
@@ -30,13 +30,15 @@ function ResumenBody({ data }: { data: ResumenEjecutivo }) {
 
   return (
     <View style={styles.stack}>
-      <KpiGrid>
-        <KpiCard label="Sentencias analizadas" value={formatNumber(kpis.sentencias_analizadas.valor)} detail={kpis.sentencias_analizadas.desde ? `desde ${kpis.sentencias_analizadas.desde}` : "sin corte"} />
-        <KpiCard label="Capital medio" value={formatCurrency(kpis.capital_indemnizatorio_medio.valor)} detail="promedio por sentencia" />
-        <KpiCard label="Costo por punto" value={formatCurrency(kpis.costo_implicito_punto.media, 2)} detail="promedio" />
-        <KpiCard label="Demora mediana" value={`${kpis.demora_mediana_anios} años`} detail="hecho → sentencia" />
-        <KpiCard label="Doctrina Barrientos" value={`${kpis.doctrina_barrientos_pct.aplicada}%`} detail="de las sentencias" />
-      </KpiGrid>
+      <KpiCarousel
+        items={[
+          { label: "Sentencias analizadas", value: formatNumber(kpis.sentencias_analizadas.valor), detail: kpis.sentencias_analizadas.desde ? `desde ${kpis.sentencias_analizadas.desde}` : "sin corte" },
+          { label: "Capital medio", value: formatCurrency(kpis.capital_indemnizatorio_medio.valor), detail: "promedio por sentencia" },
+          { label: "Costo por punto", value: formatCurrency(kpis.costo_implicito_punto.media, 2), detail: "promedio" },
+          { label: "Demora mediana", value: `${kpis.demora_mediana_anios} años`, detail: "hecho → sentencia" },
+          { label: "Doctrina Barrientos", value: `${kpis.doctrina_barrientos_pct.aplicada}%`, detail: "de las sentencias" },
+        ]}
+      />
 
       <Card title="Evolución del costo por punto" subtitle="Media y mediana del período filtrado">
         <CostLineChart points={data.evolucion_mensual_costo_punto} />

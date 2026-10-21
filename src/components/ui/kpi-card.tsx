@@ -1,12 +1,22 @@
 import type { ReactNode } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, type ViewStyle } from "react-native";
 import { radius } from "@/theme/palette";
 import { useTheme } from "@/theme/theme";
 
-export function KpiCard({ label, value, detail }: { label: string; value: string; detail?: string }) {
+export function KpiCard({
+  label,
+  value,
+  detail,
+  style,
+}: {
+  label: string;
+  value: string;
+  detail?: string;
+  style?: ViewStyle;
+}) {
   const { colors } = useTheme();
   return (
-    <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.line }]}>
+    <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.line }, style]}>
       <Text style={[styles.label, { color: colors.muted }]}>{label}</Text>
       <Text style={[styles.value, { color: colors.ink }]} numberOfLines={2}>
         {value}
