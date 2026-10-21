@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import { BarList } from "@/components/charts/bar-list";
 import { ColumnChart } from "@/components/charts/column-chart";
-import { CostLineChart } from "@/components/charts/line-chart";
+import { EvolucionCostoChart } from "@/components/charts/line-chart";
 import { DashboardScreen } from "@/components/dashboard/dashboard-screen";
 import { IndexMeter } from "@/components/dashboard/index-meter";
 import { PageGate } from "@/components/dashboard/page-gate";
 import { Card } from "@/components/ui/card";
 import { KpiCarousel } from "@/components/ui/kpi-carousel";
-import { formatCurrency, formatNumber } from "@/dashboard/format";
+import { formatCurrency, formatNumber, frecuenciaCopy } from "@/dashboard/format";
 import { radius } from "@/theme/palette";
 import { useTheme } from "@/theme/theme";
 import type { ResumenEjecutivo } from "@/types/api";
@@ -40,8 +40,8 @@ function ResumenBody({ data }: { data: ResumenEjecutivo }) {
         ]}
       />
 
-      <Card title="Evolución del costo por punto" subtitle="Media y mediana del período filtrado">
-        <CostLineChart points={data.evolucion_mensual_costo_punto} />
+      <Card title={`${frecuenciaCopy(data.filtros?.frecuencia).evolucion} del costo por punto`}>
+        <EvolucionCostoChart points={data.evolucion_mensual_costo_punto} />
       </Card>
 
       <Card title="Composición del capital" subtitle="Participación de cada rubro sobre el total indemnizado">

@@ -1,4 +1,5 @@
-import { ScrollView, StyleSheet, View, type RefreshControlProps } from "react-native";
+import { StyleSheet, View, type RefreshControlProps } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import type { ReactNode } from "react";
 import { useTheme } from "@/theme/theme";
 
@@ -15,6 +16,7 @@ export function Screen({
       style={{ flex: 1, backgroundColor: colors.background }}
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
+      directionalLockEnabled
       refreshControl={refreshControl}
     >
       <View style={styles.inner}>{children}</View>

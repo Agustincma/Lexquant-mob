@@ -23,6 +23,7 @@ export const light = {
   chartCoral: "#e76f51",
   chartAmber: "#d99a22",
   chartBand: "#b8d9d2",
+  chartMuted: "#c4cacd",
   shadow: "rgba(24,49,59,0.06)",
 };
 
@@ -51,6 +52,7 @@ export const dark: typeof light = {
   chartCoral: "#f08a6e",
   chartAmber: "#e8b14b",
   chartBand: "#23514b",
+  chartMuted: "#56656a",
   shadow: "rgba(0,0,0,0.28)",
 };
 
